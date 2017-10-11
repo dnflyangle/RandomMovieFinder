@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Image } from 'react-native';
 import { IMAGE_PREFIX } from '../FakeMoviesApi';
+import Favourite from './Favourite';
 
 class MovieCell extends Component {
-  static navigationOptions = () => ({
-    title: 'Movie'
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Movie',
+    headerRight: <Favourite movie={navigation.state.params.movie} />
 });
 
 render() {

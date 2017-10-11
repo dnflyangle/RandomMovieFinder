@@ -1,12 +1,13 @@
-import { StackNavigator } from 'react-navigation';
-import Home from './components/Home';
-import MovieList from './components/MovieList';
-import MovieCell from './components/MovieCell';
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './redux';
+import AppNavigation from './components/AppNavigation';
 
-const App = StackNavigator({
-  Home: { screen: Home },
-  MovieList: { screen: MovieList },
-  MovieCell: { screen: MovieCell },
-});
+const App = () => (
+  <Provider store={createStore(reducer)}>
+    <AppNavigation />
+  </Provider>
+);
 
 export default App;

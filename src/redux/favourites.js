@@ -7,8 +7,7 @@ export default (state = [], action) => {
       ];
     case 'REMOVE_FAVOURITE':
       return [
-        ...state,
-        action.movie
+        ...state.filter((movie) => movie.id !== action.movie.id)
       ];
     default:
       return state;
