@@ -17,6 +17,7 @@ class SearchBox extends React.Component {
           style={styles.inputBox} 
           onChangeText={this.onChangeText}
           autoCapitalize={'none'} 
+          value={this.state.inputValue}
         />
         <TouchableOpacity 
           style={styles.buttonStyle}
