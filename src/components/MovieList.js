@@ -1,12 +1,10 @@
 import React from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
 import MovieListItem from './MovieListItem';
 
 const renderSearchKeyword = (searchKeyword) => {
   if (searchKeyword !== '') {
-    return (
-      <Text>{`Searches for '${searchKeyword}'`}</Text>
-    );
+    return `Searches for '${searchKeyword}'`;
   }
 };
 
@@ -18,19 +16,19 @@ class MovieList extends React.Component {
   movieSelected = (movie) => {
     this.props.navigation.navigate('MovieCell', { movie });
   };
-  
+
   render() {
     return (
       <View style={styles.listContainer}>
-        <FlatList 
+        <FlatList
           data={this.props.navigation.state.params.movies}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <MovieListItem 
+          renderItem={({ item }) => <MovieListItem
             movie={item}
             callback={this.movieSelected}
           />}
         />
-      </View> 
+      </View>
     );
   }
 }
