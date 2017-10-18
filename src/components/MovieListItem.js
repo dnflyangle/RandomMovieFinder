@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
-import { IMAGE_PREFIX } from '../FakeMoviesApi';
+import { IMAGE_PREFIX } from '../MoviesApi';
 
 class MovieListItem extends Component {
   render() {
@@ -37,10 +37,10 @@ const styles = {
     justifyContent: 'center'
   },
 
-  image: { 
-    width: 50, 
-    height: 50, 
-    resizeMode: 'contain' 
+  image: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain'
   },
 
   movieTitle: {

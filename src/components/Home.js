@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux';
 import movieImage from '../resources/movieBoardImg.png';
 import SearchBox from './SearchBox';
-import * as FakeMoviesApi from '../FakeMoviesApi';
+import { callMovieApi } from '../redux/movies';
 
 class Home extends Component {
   static navigationOptions = {
@@ -22,12 +22,13 @@ class Home extends Component {
   }
 
   onSearchPressed = (searchKeyWord) => {
-    const movies = FakeMoviesApi.search(searchKeyWord);
+    this.props.dispatchCallMovieApi(searchKeyWord);
 
-    this.props.navigation.navigate('MovieList', {
-      searchKeyWord, movies
+    this.props.navigation.navigate('SearchMovieList', {
+      searchKeyWord
     });
   }
+
   onFavouritePressed = (favourites) => {
     this.props.navigation.navigate('MovieList', {
       searchKeyWord: 'Favourites',
@@ -41,9 +42,9 @@ class Home extends Component {
         <Text>What Movie should we watch tonight</Text>
         <Image style={styles.image} source={movieImage} />
         <SearchBox onSearchPressed={this.onSearchPressed} />
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.buttonStyle}
-          onPress={() => this.onFavouritePressed(this.props.favourites)} 
+          onPress={() => this.onFavouritePressed(this.props.favourites)}
         >
           <Text>Favourites</Text>
         </TouchableOpacity>
@@ -53,19 +54,23 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-  content: { 
+  content: {
     flex: 1,
-    paddingTop: 15, 
+    paddingTop: 15,
     alignItems: 'center'
   },
-  image: { 
-    width: '30%', 
-    height: '30%', 
+  image: {
+    width: '30%',
+    height: '30%',
     resizeMode: 'contain' }
 });
 
 const mapStateToProps = state => ({
-  favourites: state.favourites
+  favourites: state.favourites,
 });
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = dispatch => ({
+  dispatchCallMovieApi: keyword => dispatch(callMovieApi(keyword)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Image } from 'react-native';
-import { IMAGE_PREFIX } from '../FakeMoviesApi';
+import { IMAGE_PREFIX } from '../MoviesApi';
 import Favourite from './Favourite';
 
 class MovieCell extends Component {
